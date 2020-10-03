@@ -3,14 +3,14 @@
     box-sizing: border-box;
     color: #001121;
 }
-#death{
+.death{
     height: 100%;
     width: 100%;
     background: red;
     position: absolute;
     display: none;
 }
-#death label{
+.death *{
     font-size: 200px;
     margin: 200px 250px;
 }
