@@ -3,15 +3,8 @@
     box-sizing: border-box;
     color: #001121;
 }
-#death{
-    height: 100%;
-    width: 100%;
-    background: red;
-    position: absolute;
-    display: none;
-}
-#death label{
-    font-size: 200px;
+#SMS-TEXT{
+    font-size: 100px;
     margin: 200px 250px;
 }
 .container{
@@ -114,9 +107,8 @@ input{
     display: none;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
     position: absolute;
-    background: #4585c0;
-    height: 600px;
-    width: 900px;
+    background: #4d3fc7;
+    height: 150%;
+    width: 100%;
 }

@@ -1,34 +1,26 @@
-//сама игра, где вызываются ф-и рассчёта и печати информации
-function stepTo(){
-    
-    if (step === null) {
-        return;
-    }
+
+
+
+function printWaysButtons(){
     var room = rooms[step];
-    if (!room) {
-        return;
+    var str = '';
+    for(var i = 0; i < room.ways.length; i++){
+        str += `<button class="wayButton" data-number="${room.ways[i].step}">${room.ways[i].way}</button>`
+    }
+    document.getElementById('waysButtons').innerHTML = str;
+    var buttons = document.getElementsByClassName('wayButton');
+    for(var i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener('click', function(){
+            step = this.dataset.number;
+            console.log(step);
+            calculateStats();
+            printRoomInfo();
+        });
     }
     
-    var answer = document.getElementById('inp').value;
-    document.getElementById('inp').value = '';
-    if (!answer) {
-        return;
-    }
-    answer = answer.toLowerCase().replace(' ', '');
-    var isWayNotFound = true;
-    for (var i = 0; i < room.ways.length; i++) {
-        if (answer === room.ways[i].answer) {
-            step = room.ways[i].step;
-            isWayNotFound = false;
-            break;
-        }
-    }
-    if (isWayNotFound) {
-        step = room.defaultStep;
-    }
-    calculateStats();
-    printRoomInfo();
 }
+    
+
 
 //печать информации о команате
 function printRoomInfo(){
@@ -52,52 +44,47 @@ function printRoomInfo(){
         }        
     }
     document.getElementById('Ways').innerHTML = exits.join(', ');
+    printWaysButtons();
 }
 
 //рассчёт статов
 function calculateStats(){
-    //проверка ХП и местоположениеы
-    if(character.hp <= 5 || character.stress > 90){
-        return printDeathPage();
-    } 
-    switch(step){
-        case 1: 
-            if(character.hp < 100 && money > 50){
-                character.hp += Math.round(5 + (character.knowledge * 0.01));
-                character.money -= 50;
-                printAbilities();
-            }
-            break;
-        case 2: 
-            if(character.hp < 100 && step == 1 && character.money >= 50){
-            character.knowledge += 10;
-            character.stress += 15;
-            printAbilities();
-            }
-            break;
-        case 3: 
-            character.money += Math.round(100 + (character.knowledge * 0.1));
-            printAbilities();
-            break;
+    //проверка ХП и местоположения
+    if(step == 1 && character.hp < 100 && character.money >= 50){
+        character.hp += Math.round(5 + (character.knowledge * 0.01));
+        character.money -= 50;
+        printAbilities();
     }
-    TotalSteps += 1;
+    if(step == 2){
+        character.knowledge += 10;
+        character.stress += 10;
+        printAbilities();
+    }
+    if(step == 3){
+        character.money += Math.round(100 + (character.knowledge * 0.1));
+        printAbilities();
+    }
     if(step != 1){
         character.hp -= Math.round(5 - (character.knowledge * 0.01));
     }
-    if(character.stress >= 10 && character.hp > 0){
-        character.stress -= 10;
-        
+    if(character.stress >= 5 && character.hp > 0 && step != 2){
+        character.stress -= 5;   
     }
+    TotalSteps += 1;
     printAbilities();
         //вызов сессии и рассчёт шагов
-        if(TotalSteps % 40 == 0 && TotalSteps > 0){
-            if(character.knowledge >= 200){
-                showSession(true);
-            } else {
-                showSession(false);
-            }
-        }  
+    if(TotalSteps % 40 == 0 && TotalSteps > 0){
+        if(character.knowledge >= 200){
+            showSession(true);
+        } else {
+            showSession(false);
+        }
     }
+    if(character.hp <= 5 || character.stress > 90){
+        printDeathPage();
+    } 
+}  
+    
     
 function showSession(pass){
     if(pass){
@@ -147,5 +134,11 @@ function printAbilities(){
 }
 
 function printDeathPage(){
-    document.getElementById('death').death.style.display = 'flex';
+    document.getElementById('SMS').style.display = 'flex';
+    document.getElementById('SMS').style.background = 'red';
+    document.getElementById('SMS-TEXT').innerHTML = 'ВЫ УМЕРЛИ';
+}
+
+function callMonster(){
+    
 }
