@@ -7,7 +7,7 @@ var rooms = [
             { way: 'Аудитория', step: 2}, 
             { way: 'Художка', step: 3}
         ],
-        image: 'https://avatars.mds.yandex.net/get-zen_doc/1362552/pub_5d53c49f46f4ff00ad95d29f_5d552f0e06cc4600ae5120f4/scale_1200'
+        image: 'img/corridor.jpg'
     },
     {   
         name: 'столовая',
@@ -16,7 +16,7 @@ var rooms = [
             { way: 'Столовая', step: 1},  
             { way: 'Коридор', step: 0}
         ],
-        image: 'https://salo-sila.ru/wp-content/uploads/2016/10/shkolnaya_stolovaya.jpg'
+        image: 'img/kitchen.jpg'
     },
     {   
         name: 'аудитория',
@@ -25,7 +25,7 @@ var rooms = [
             { way: 'Аудитория', step: 2},  
             { way: 'Коридор', step: 0} 
         ],
-        image: 'https://vignette.wikia.nocookie.net/stalker/images/1/11/Ss_admin_12-14-19_09-51-32_%28jupiter%29.jpg/revision/latest/top-crop/width/300/height/300?cb=20191214120344&path-prefix=ru'
+        image: 'img/audience.jpg'
     },
     {   
         name: 'Художественная аудитория',
@@ -34,30 +34,45 @@ var rooms = [
             { way: 'Художка', step: 3},  
             { way: 'Коридор', step: 0} 
         ],
-        image: 'https://ic.pics.livejournal.com/skosolapoff/21786214/349617/349617_600.jpg'
+        image: 'img/artAudience.jpg'
     }
 ]
-
+var monsters = [
+    {name: 'Rodionova', 
+    stats: '(Родионова А.Г, урон 5, стресс поднимается до 99)',
+    question: 'Здравствуй, студент, вот тебе задача с прошлой лекции:',
+    text: '狗，在這裡聽，要么決定我的雙射，要么我將我的雙射放在您的投影中，希望您能理解一切，狗會發臭，我會開除您的，但我認為您將獲得三千獎學金來生活幾個月，浮渣，還有，你想讓我讀一下摩根森式的說唱嗎？我讀的太快了，以至於您在談論序號。你死了還是沒混蛋？',
+    img: 'img/Rodionova.jpg',
+    answers: ['да', 'нет', 'крокодил', 'синий']
+    },
+    {name: 'Trusov', 
+    stats: '(Трусов А.С, урон 55, стресс +30, опыт -50, деньги -1000)',
+    question: 'Сделал домашку? Дай-ка проверю, будущий солдат:',
+    text: 'Ну и говно-код вы написали, сударь, вас бы в армию так то вынести к чертям собачим, а это что? Вы это называете вёрсткой? КТО, МАТЬ ТВОЮ, ПИШЕТ КИРИЛЛИЦЕЙ ГРЁБАННЫЕ НАЗВАНИЯ ПЕРЕМЕННЫХ, ПЁС? ВЫМЕТАЙСЯ ОТСЮДА, ПОКА Я ПОЛИЦИЮ НЕ ВЫЗВАЛ!',
+    img: 'img/trusovBefore.jpg',
+    answers: ['уйти', 'покаяться', 'умолять на коленях', 'поплакать и исправить']
+    },
+]
 var characters = [
     {
         name: 'Girl',
         hp: 80,
         money: 800,
-        knowledge: 15,
+        experiense: 15,
         stress: 15
     },
     {
         name: 'Boy',
         hp: 100,
         money: 500,
-        knowledge: 10,
+        experiense: 10,
         stress: 10
     },
     {
         name: 'Pokemon',
         hp: 450,
         money: 12800,
-        knowledge: 3,
+        experiense: 3,
         stress: -1000
     }
 ];
