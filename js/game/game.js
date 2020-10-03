@@ -1,34 +1,25 @@
-//сама игра, где вызываются ф-и рассчёта и печати информации
-function stepTo(){
-    
-    if (step === null) {
-        return;
-    }
+
+
+
+function printWaysButtons(){
     var room = rooms[step];
-    if (!room) {
-        return;
+    var str = '';
+    for(var i = 0; i < room.ways.length; i++){
+        str += `<button class="wayButton" data-number="${room.ways[i].step}">Choose ${room.ways[i].way}</button>`
+    }
+    document.getElementById('waysButtons').innerHTML = str;
+    var buttons = document.getElementsByClassName('wayButton');
+    for(var i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener('click', function(){
+            step = this.dataset.number;
+            calculateStats();
+            printRoomInfo();
+        });
     }
     
-    var answer = document.getElementById('inp').value;
-    document.getElementById('inp').value = '';
-    if (!answer) {
-        return;
-    }
-    answer = answer.toLowerCase().replace(' ', '');
-    var isWayNotFound = true;
-    for (var i = 0; i < room.ways.length; i++) {
-        if (answer === room.ways[i].answer) {
-            step = room.ways[i].step;
-            isWayNotFound = false;
-            break;
-        }
-    }
-    if (isWayNotFound) {
-        step = room.defaultStep;
-    }
-    calculateStats();
-    printRoomInfo();
 }
+    
+
 
 //печать информации о команате
 function printRoomInfo(){
@@ -52,6 +43,7 @@ function printRoomInfo(){
         }        
     }
     document.getElementById('Ways').innerHTML = exits.join(', ');
+    printWaysButtons();
 }
 
 //рассчёт статов
