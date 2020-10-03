@@ -81,7 +81,7 @@ function calculateStats(){
         }
     }
     if(character.hp <= 5 || character.stress > 90){
-        return printDeathPage();
+        printDeathPage();
     } 
 }  
     
@@ -134,7 +134,11 @@ function printAbilities(){
 }
 
 function printDeathPage(){
-    var death = document.createElement('div').classList = 'death';
-    death.innerHTML = 'ВЫ УМЕРЛИ';
+    document.getElementById('SMS').style.display = 'flex';
+    document.getElementById('SMS').style.background = 'red';
+    document.getElementById('SMS-TEXT').innerHTML = 'ВЫ УМЕРЛИ';
+}
 
+function callMonster(){
+    
 }
